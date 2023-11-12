@@ -1,0 +1,194 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirm Id Card Page</title>
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/css/style-c-kyc.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap-datepicker.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../script/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../script/css/style-c.min.css">
+    <link rel="stylesheet" href="../script/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"> -->
+</head>
+
+<body>
+    <img src="/auth/singularity/images/bg-login-desktop.png" alt="" class="bg">
+    <div class="logo">
+        <img style="cursor: pointer;" onclick="goToHome()" src="/auth/singularity/images/main_logo.png" alt="">
+    </div>
+    <div class="content container-fluid align-center row justify-content-center" id="form-sign">
+
+        <form action="" id="checkId" method="post" class="col-12 container-fluid">
+            <h2 class="h-content text-sgl-success">IDEM additional customer information</h2>
+            <div class="col-md-12 mb-3">
+                <hr>
+            </div>
+            <div style="margin: auto;padding-left: 7%;" class="container-fluid form-group text-md text-left col-7">
+                <label>ID Card : </label>&nbsp;&nbsp;<label id="id_card" style="font-weight: 400;">
+                    <%= idCard %>
+                </label>
+            </div>
+            <div style="margin: auto;padding-left: 7%;" class="container-fluid form-group text-md text-left col-7">
+                <label>Birthdate: </label>&nbsp;&nbsp;<label id="birthdate" style="font-weight: 400;">
+                    <%= birthdate %>
+                </label>
+            </div>
+            <div style="margin: auto;padding-left: 7%;" class="container-fluid form-group text-md text-left col-7">
+                <label>Firstname : </label>&nbsp;&nbsp;<label id="firstname" style="font-weight: 400;">
+                    <%= firstname %>
+                </label>
+            </div>
+            <div style="margin: auto;padding-left: 7%;" class="container-fluid form-group text-md text-left col-7">
+                <label>Lastname : </label>&nbsp;&nbsp;<label id="lastname" style="font-weight: 400;">
+                    <%= lastname %>
+                </label>
+            </div>
+            <div style="margin: auto;padding-left: 7%;" class="container-fluid form-group text-md text-left col-7">
+                <label>Email : </label>&nbsp;&nbsp;<label id="email" style="font-weight: 400;">
+                    <%= email %>
+                </label>
+            </div>
+            <div class="row justify-content-md-center container col-12" style="padding: 0px 100px 10px 100px;">
+                <div class="col-6 mx-auto mt-3">
+                    <button id="bsing_in"
+                        onclick="kycCheck('<%= session %>', '<%= publicId %>', '<%= redirectURI %>', '<%= state %>', '<%= idCard %>', '<%= birthdate %>', '<%= firstname %>', '<%= lastname %>', '<%= email %>', '<%= kycId %>')"
+                        type="button" class="btn btn-block btn-sgl-success rounded-0 text-lg">SUBMIT</button>
+                </div>
+                <div class="col-6 mx-auto mt-3">
+                    <a id="btn_cancel" style="text-decoration: none;"><button id="bsing_ccl" type="button"
+                            class="btn btn-block text-sgl-success-cancel rounded-0 text-lg">CANCEL</button></a>
+                </div>
+            </div>
+        </form>
+        <div class="box-blue"></div>
+        <div class="box-yellow"></div>
+        <!-- <div class="box-gray"></div>
+    <div class="box-black"></div> -->
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/auth/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bs-datepicker.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
+    <!-- <script src="../script/js/jquery-3.3.1.min.js"></script>
+<script src="../script/js/popper.min.js"></script>
+<script src="../script/js/bootstrap.min.js"></script>
+<script src="../script/js/bs-datepicker.js"></script>
+<script src="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"></script> -->
+
+    <!-- Optional JavaScript -->
+
+    <script>
+        const date = new Date();
+        debugger;
+        let _birthdate = '<%= birthdate %>'
+        if (_birthdate.length > 4 && _birthdate.length <= 8) {
+            document.getElementById('birthdate').innerHTML = _birthdate.substring(_birthdate.length - 2, _birthdate.length) + '/' + _birthdate.substring(_birthdate.length - 4, _birthdate.length - 2) + '/' + _birthdate.substring(0, _birthdate.length - 4)
+        } else {
+            document.getElementById('birthdate').innerHTML = _birthdate
+        }
+        document.getElementById('btn_cancel').href = '<%= redirectURI %>' + ('<%= state %>' ? '?state=' + '<%= state %>' : '') + '&error=user_denied'
+
+        function kycCheck(session, publicId, redirectURI, state, idCard, birthdate, firstname, lastname, email, kycId) {
+            // console.log('session: ', session);
+            // console.log('publicId: ', publicId);
+            // console.log('redirectURI: ', redirectURI);
+            // console.log('state: ', state);
+            // console.log('idCard: ', idCard);
+            // console.log('birthdate: ', birthdate);
+            // console.log('firstname: ', firstname);
+            // console.log('lastname: ', lastname);
+            // console.log('email: ', email);
+            // console.log('::kycCheck::')
+            const [xSession, xRtid, tid] = session.split('_')
+            let URL = window.location.origin + `/auth/v3.1/kyc/check?sid=${xSession}&rtid=${xRtid}&tid=${tid}${state ? '&state=' + state : ''}`
+            console.log(kycId)
+            if (kycId) {
+                URL += `&kyc_id=${kycId}`
+            }
+            $.ajax({
+                url: URL,
+                type: 'POST',
+                data: {
+                    public_id: publicId,
+                    redirect_uri: redirectURI,
+                    id_card: idCard,
+                    birth_date: birthdate,
+                    firstname: firstname,
+                    lastname: lastname,
+                    email: email
+                },
+                success: function (response) {
+                    console.log('response: ', response);
+                    if (response.redirect_uri) {
+                        window.location = response.redirect_uri
+                    }
+                },
+                error: function (error) {
+                    console.log('error: ', error);
+                    if (error.status == 0 || error.status == 400 || error.status == 401 || error.status == 404 || error.status == 408) {
+                        // console.log("In 400 status")
+                        Swal.fire({
+                            title: 'Bad Request',
+                            text: "Please try again.",
+                            type: 'error',
+                            confirmButtonColor: '#ed41f1',
+                            confirmButtonText: 'Close',
+                            allowOutsideClick: false
+                        })
+
+                    }
+                    else if (error.status == 403) {
+                        // console.log("In 500 status")
+                        Swal.fire({
+                            title: 'ข้อมูลลงทะเบียนของคุณไม่ตรงกับบัตรประชาชน',
+                            text: "โปรดติดต่ออำเภอ/เขตเพื่อตรวจสอบ",
+                            type: 'error',
+                            confirmButtonColor: '#ed41f1',
+                            confirmButtonText: 'Close',
+                            allowOutsideClick: false
+                        })
+                    }
+                    else if (error.status == 500 || error.status == 503) {
+                        // console.log("In 500 status")
+                        Swal.fire({
+                            title: 'ขออภัย ไม่สามารถทำรายการได้',
+                            text: "กรุณาลองใหม่",
+                            type: 'error',
+                            confirmButtonColor: '#ed41f1',
+                            confirmButtonText: 'Close',
+                            allowOutsideClick: false
+                        })
+                    }
+                    else if (error.status == 501 || error.status == 502 || error.status == 504) {
+                        // console.log("In 500 status")
+                        Swal.fire({
+                            title: 'Internal Server Error',
+                            text: "Please try again.",
+                            type: 'error',
+                            confirmButtonColor: '#ed41f1',
+                            confirmButtonText: 'Close',
+                            allowOutsideClick: false
+                        })
+                    } else {
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

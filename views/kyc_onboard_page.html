@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Confirm Id Card Page</title>
+    <!-- <link rel="JavaScript" href="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"> -->
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/css/style-c-kyc.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap-datepicker.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../script/css/style-c.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../script/css/bootstrap-datepicker.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css" crossorigin="anonymous"> -->
+</head>
+
+<body>
+    <img src="/auth/singularity/images/bg-login-desktop.png" alt="" class="bg">
+    <div class="logo">
+        <img style="cursor: pointer;" onclick="goToHome()" src="/auth/singularity/images/main_logo.png" alt="">
+    </div>
+    <div class="content container-fluid align-center row justify-content-center" id="form-sign">
+
+        <form action="" id="checkId" method="post" class="col-12 container-fluid">
+            <h2 class="h-content text-sgl-success2">IDEM additional customer information</h2>
+            <div class="col-md-12 mb-3">
+                <hr>
+            </div>
+            <div style="padding-left: 25px; padding-right: 25px;"
+                class="container-fluid form-group text-md text-left col-7">
+                <label for="id_card">ID Card :</label>
+                <input type="text" name="id_card" id="id_card" pattern="\d{13}" class="form-control rounded-0"
+                    placeholder="Thai National ID" maxlength="13" required>
+                <span class="text-right text-sgl-success-hint text-danger">
+                    <div id="idCardMsg" style="font-size: 16px;padding: 0px;" class="d-none">Please fill ID Card.
+                        Example : 11056966XXXX22</div>
+                </span>
+            </div>
+            <div class="container-fluid form-group text-md text-left col-7">
+                <label style="padding-left: 10px;" for="birth_date">Birth Date</label> :</label>
+                <!-- <input id="birth_date" name="birth_date" type="text" class="form-control rounded-0 datepicker" readonly
+                required> -->
+                <div class="row">
+                    <div style="padding: 5px; padding-left: 25px;" class="form-inline col-4">
+                        <select style="padding: 0px;" class="col-12" id="selectDay"
+                            onchange="onClickDay(); checkAge();">
+                            <option value="">Day</option>
+                        </select>
+                    </div>
+                    <div style="padding: 5px;" class="form-inline col-4">
+                        <select style="padding: 0px;" class="col-12" id="selectMonth"
+                            onchange="onClickMonth(); checkAge();">
+                            <option value="">Month</option>
+                        </select>
+                    </div>
+                    <div style="padding: 5px; padding-right: 25px;" class="form-inline col-4">
+                        <select style="padding: 0px;" class="col-12" id="selectYear"
+                            onchange="onClickYear(); checkAge();">
+                            <option value="">Year</option>
+                        </select>
+                    </div>
+                </div>
+                <span class="text-right text-sgl-success-hint text-danger">
+                    <div id="birthDateMsg" style="font-size: 16px;padding: 0px;" class="d-none">Please fill Birth Date.
+                    </div>
+                </span>
+                <span class="text-right text-sgl-success-hint text-danger">
+                    <div id="old17Msg" style="font-size: 16px;padding: 0px;" class="d-none">อายุคุณยังไม่เกิน17ปี</div>
+                </span>
+            </div>
+            <div style="padding-left: 25px" class="row mx-auto checkbox container-fluid form-group text-md col-7">
+                <label><input type="checkbox" id="checkDMY" value="" onclick="disableDMY()"> คลิกที่นี่ กรณีไม่มีข้อมูล
+                    วัน-เดือน เกิดในบัตรประชาชน</label>
+            </div>
+            <div class="row justify-content-md-centercontainer col-12" style="padding: 0px 100px 10px 100px;">
+                <div class="col-6 mx-auto mt-3">
+                    <button id="bsing_in"
+                        onclick="kycCheck('<%= session %>', '<%= publicId %>', '<%= redirectURI %>', '<%= state %>', '<%= kycId %>')"
+                        type="button" class="btn btn-block btn-sgl-success rounded-0 text-lg">SUBMIT</button>
+                </div>
+                <div class="col-6 mx-auto mt-3">
+                    <a id="btn_cancel" style="text-decoration: none;"><button id="bsing_ccl" type="button"
+                            class="btn btn-block text-sgl-success-cancel rounded-0 text-lg">CANCEL</button></a>
+                </div>
+            </div>
+        </form>
+        <div class="box-blue"></div>
+        <div class="box-yellow"></div>
+        <!-- <div class="box-gray"></div>
+    <div class="box-black"></div> -->
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/auth/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bs-datepicker.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
+
+    <!-- <script src="moment.js"></script>
+<script src="../script/js/jquery-3.3.1.min.js"></script>
+<script src="../script/js/popper.min.js"></script>
+<script src="../script/js/bootstrap.min.js"></script>
+<script src="../script/js/bs-datepicker.js"></script>
+<script src="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"></script> -->
+
+    <!-- Optional JavaScript -->
+
+    <script>
+        let day = []
+        let month = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
+        let year = []
+        let selectedDay = ""
+        let selectedMonth = ""
+        let selectedYear = ""
+        let selectDay = document.getElementById("selectDay")
+        let selectMonth = document.getElementById("selectMonth")
+        let selectYear = document.getElementById("selectYear")
+        let birthDate = ""
+        let monthNo
+        let nowDate
+
+        let isLeap = year => new Date(year, 1, 29).getDate() === 29;
+        // console.log("คำนวณปีอธิกสุรทิน",isLeap(2019))
+        nowDate = selectedDay
+
+        window.onload = calendarInit()
+        document.getElementById('btn_cancel').href = '<%= redirectURI %>' + ('<%= state %>' ? '?state=' + '<%= state %>' : '') + '&error=user_denied'
+        $(document).ready(function () {
+            const date = new Date();
+            $(':input[readonly]').css({ 'background-color': '#fff' })
+            $('#id_card').on('keyup change', function () {
+                $('#id_card').removeClass("is-invalid")
+                $('#idCardMsg').addClass('d-none')
+            })
+        })
+        let flagIsDisable = false
+        let checkBox = document.getElementById("checkDMY");
+        function disableDMY() {
+            flagIsDisable = !flagIsDisable
+            $('#selectDay').prop('disabled', flagIsDisable)
+            $('#selectMonth').prop('disabled', flagIsDisable)
+            $('#old17Msg').addClass('d-none')
+            // $('#selectYear').prop('disabled',flagIsDisable)
+            selectDay.value = ""
+            selectMonth.value = ""
+            selectYear.value = ""
+            console.log("777", checkBox.checked)
+            // birthDate = "0000"
+        }
+        function kycCheck(session, publicId, redirectURI, state, kycId) {
+            const [xSession, xRtid, tid] = session.split('_')
+            // const dPublicId = atob(publicId)
+            let URL = window.location.origin + `/auth/v3.1/kyc/check?sid=${xSession}&rtid=${xRtid}&tid=${tid}${state ? '&state=' + state : ''}`
+            if (kycId) {
+                URL += `&kyc_id=${kycId}`
+            }
+            const idCard = document.getElementById('id_card').value
+            // const [dd, mm, yyyy] = (document.getElementById('birth_date').value).split('-')
+            // reformat date dd-mm-yyyy -> yyyymmdd
+            // const birthDate = yyyy + mm + dd
+            // console.log("checkid",idCard)
+            console.log("check", birthDate)
+            if (!validateIdCard(idCard) && !validateDate(birthDate)) {
+                $('#id_card').addClass("is-invalid")
+                $('#idCardMsg').removeClass('d-none')
+                $('#birthDateMsg').removeClass('d-none')
+            } else if (!validateDate(birthDate)) {
+                // $('#birth_date').addClass("is-invalid")
+                $('#birthDateMsg').removeClass('d-none')
+            } else if (!validateIdCard(idCard)) {
+                $('#id_card').addClass("is-invalid")
+                $('#idCardMsg').removeClass('d-none')
+            } else {
+                // console.log("=>", birthDate)
+                $.ajax({
+                    url: URL,
+                    type: 'POST',
+                    data: {
+                        public_id: publicId,
+                        redirect_uri: redirectURI,
+                        id_card: idCard,
+                        birth_date: birthDate
+                    },
+                    success: function (response) {
+                        if (response.redirect_uri) {
+                            window.location = response.redirect_uri
+                        }
+                    },
+                    error: function (error) {
+                        if (error.status == 0 || error.status == 400 || error.status == 401 || error.status == 404 || error.status == 408) {
+                            // console.log("In 400 status")
+                            Swal.fire({
+                                title: 'Bad Request',
+                                text: "Please try again.",
+                                type: 'error',
+                                confirmButtonColor: '#ed41f1',
+                                confirmButtonText: 'Close',
+                                allowOutsideClick: false
+                            })
+
+                        }
+                        else if (error.status == 403) {
+                            // console.log("In 500 status")
+                            Swal.fire({
+                                title: 'ข้อมูลลงทะเบียนของคุณไม่ตรงกับบัตรประชาชน',
+                                text: "โปรดติดต่ออำเภอ/เขตเพื่อตรวจสอบ",
+                                type: 'error',
+                                confirmButtonColor: '#ed41f1',
+                                confirmButtonText: 'Close',
+                                allowOutsideClick: false
+                            })
+                        }
+                        else if (error.status == 403) {
+                            // console.log("In 500 status")
+                            Swal.fire({
+                                title: 'ข้อมูลลงทะเบียนของคุณไม่ตรงกับบัตรประชาชน',
+                                text: "โปรดติดต่ออำเภอ/เขตเพื่อตรวจสอบ",
+                                type: 'error',
+                                confirmButtonColor: '#ed41f1',
+                                confirmButtonText: 'Close',
+                                allowOutsideClick: false
+                            })
+                        }
+                        else if (error.status == 500 || error.status == 503) {
+                            // console.log("In 500 status")
+                            Swal.fire({
+                                title: 'ขออภัย ไม่สามารถทำรายการได้',
+                                text: "กรุณาลองใหม่",
+                                type: 'error',
+                                confirmButtonColor: '#ed41f1',
+                                confirmButtonText: 'Close',
+                                allowOutsideClick: false
+                            })
+                        }
+                        else if (error.status == 501 || error.status == 502 || error.status == 504) {
+                            // console.log("In 500 status")
+                            Swal.fire({
+                                title: 'Internal Server Error',
+                                text: "Please try again.",
+                                type: 'error',
+                                confirmButtonColor: '#ed41f1',
+                                confirmButtonText: 'Close',
+                                allowOutsideClick: false
+                            })
+                        } else {
+                            // console.log("In else")
+                        }
+                        // console.log(error.status)
+                        // if (error.responseText) {
+                        //     document.write(error.responseText)
+                        // } else {
+
+                        // }
+                    }
+                });
+            }
+        }
+        function validateIdCard(id) {
+            if (id.length !== 13) return false;
+            for (i = 0, sum = 0; i < 12; i++)
+                sum += parseFloat(id.charAt(i)) * (13 - i); if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12)))
+                return false; return true;
+        }
+        function validateDate(date) {
+            if (date.length !== 8) return false;
+            return true
+        }
+
+
+        console.log(nowDate)
+        function calendarInit() {
+            currentYear = new Date().getFullYear() + 543
+            currentMonth = new Date().getMonth()
+            currentDay = new Date().getDate()
+            for (let i = 0; i < 31; i++) {
+                day.push(i + 1)
+                let el = document.createElement("option")
+                el.textContent = i + 1;
+                el.value = i + 1;
+                selectDay.appendChild(el);
+            }
+            for (let i = currentYear; i > currentYear - 100; i--) {
+                year.push(i)
+                let el = document.createElement("option")
+                el.textContent = i;
+                el.value = i;
+                selectYear.appendChild(el);
+            }
+            for (let i = 0; i < month.length; i++) {
+                let el = document.createElement("option")
+                el.textContent = month[i];
+                el.value = month[i];
+                selectMonth.appendChild(el);
+            }
+        }
+
+        function onClickDay() {
+            selectMonth.value = ""
+            selectYear.value = ""
+            birthDate = ""
+            $('#birthDateMsg').removeClass('d-none')
+            // if(selectDay.value != "" && selectMonth.value != "") {
+            //     monthNo = month.findIndex(ele => ele == selectMonth.value)+1
+            //     birthDate =  selectYear.value+""+monthNo.toString().padStart(2,"0")+""+selectDay.value.toString().padStart(2,"0")
+            // console.log(birthDate)
+            // } else {
+            //     birthDate = ""
+            // }
+            console.log(selectDay.value)
+        }
+
+        function checkAge() {
+            if (birthDate.length == 8) {
+                let today = moment()
+                let ac = parseInt(birthDate.slice(0, 4)) - 543;
+                let dob = ac.toString() + birthDate.slice(4);
+                console.log("dob", dob);
+                console.log('------------------------------')
+                let age = today.diff(dob, 'years');
+                console.log("age", age)
+                if (age < 17) {
+                    // ถ้าน้อยกว่า 17 ให้ทำอะไร
+                    $('#old17Msg').removeClass('d-none')
+                    selectDay.value = ""
+                    selectMonth.value = ""
+                    selectYear.value = ""
+                } else {
+                    $('#old17Msg').addClass('d-none')
+                }
+            }
+        }
+
+        function onClickMonth() {
+            let monthFlag
+            let isLeapFlag = isLeap(selectYear.value - 543)
+            if (selectDay.value == "" || (selectYear.value != "" && isLeapFlag == false && selectDay.value == 29 && selectMonth.value == month[1])) {
+                selectDay.value = ""
+                selectMonth.value = ""
+                selectYear.value = ""
+                birthDate = ""
+                $('#birthDateMsg').removeClass('d-none')
+            } else {
+                if (selectDay.value == 31) {
+                    monthFlag = checkMonth(selectMonth.value, 1)
+                } else if (selectDay.value == 30) {
+                    monthFlag = checkMonth(selectMonth.value, 2)
+                } else {
+                    monthFlag = true
+                }
+
+                if (monthFlag == false) {
+                    selectDay.value = ""
+                    selectMonth.value = ""
+                    selectYear.value = ""
+                    birthDate = ""
+                    $('#birthDateMsg').removeClass('d-none')
+                }
+            }
+
+            if (selectDay.value != "" && selectYear.value != "") {
+                monthNo = month.findIndex(ele => ele == selectMonth.value) + 1
+                birthDate = (selectYear.value) + "" + (monthNo != 0 ? monthNo.toString().padStart(2, "0") : "") + "" + (selectDay.value ? selectDay.value.padStart(2, "0") : "")
+                birthDate.length == 8 ? $('#birthDateMsg').addClass('d-none') : ""
+                console.log(birthDate)
+            } else {
+                birthDate = ""
+                $('#birthDateMsg').removeClass('d-none')
+            }
+        }
+        function onClickYear() {
+            if (checkBox.checked == true) {
+                let yearIsCheckBox = selectYear.value
+                $('#birthDateMsg').addClass('d-none')
+                birthDate = yearIsCheckBox + "0000"
+                console.log("888", yearIsCheckBox)
+            } else {
+                if (selectDay.value == "" || selectMonth.value == "") {
+                    selectDay.value = ""
+                    selectMonth.value = ""
+                    selectYear.value = ""
+                    birthDate = ""
+                    $('#birthDateMsg').removeClass('d-none')
+                } else {
+                    let isLeapFlag = isLeap(selectYear.value - 543)
+                    let monthIndex = month.findIndex(ele => ele == selectMonth.value)
+                    let inputDate = new Date(selectYear.value - 543, monthIndex, selectDay.value)
+                    let today = new Date()
+                    if (inputDate > today) {
+                        selectDay.value = ""
+                        selectMonth.value = ""
+                        selectYear.value = ""
+                        birthDate = ""
+                        $('#birthDateMsg').removeClass('d-none')
+                    }
+
+                    if (isLeapFlag == false && selectDay.value == 29 && selectMonth.value == month[1]) {
+                        selectDay.value = ""
+                        selectMonth.value = ""
+                        selectYear.value = ""
+                        birthDate = ""
+                        $('#birthDateMsg').removeClass('d-none')
+                    }
+                    // wait api
+                    monthNo = month.findIndex(ele => ele == selectMonth.value) + 1
+                    birthDate = (selectYear.value) + "" + (monthNo != 0 ? monthNo.toString().padStart(2, "0") : "") + "" + (selectDay.value ? selectDay.value.padStart(2, "0") : "")
+                    birthDate.length == 8 ? $('#birthDateMsg').addClass('d-none') : ""
+                    // console.log(birthDate)
+                }
+            }
+
+        }
+
+        function checkMonth(inputMonth, mode) {
+            let found
+            flag = false;
+            month31 = ['มกราคม', 'มีนาคม', 'พฤษภาคม', 'กรกฎาคม', 'สิงหาคม', 'ตุลาคม', 'ธันวาคม']
+            month30 = ['มกราคม', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
+            feb = ['กุมภาพันธ์']
+            if (mode == 1) {
+                found = month31.find(ele => ele == inputMonth)
+            } else if (mode == 2) {
+                found = month30.find(ele => ele == inputMonth)
+            } else {
+                found = true
+            }
+            if (found) flag = true;
+            return flag
+        }
+
+    </script>
+</body>
+
+</html>

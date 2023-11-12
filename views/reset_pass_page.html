@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/auth/singularity/images/icon/favicon.ico">
+    <title>Set New Password</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="/auth/singularity/script/css/style-c.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/font-awesome-4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../script/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../script/css/style-c.min.css">
+    <link rel="stylesheet" href="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../script/font-awesome-4.7.0/css/font-awesome.min.css">  -->
+
+</head>
+
+<body class="bg-color">
+    <!-- START Login from -->
+    <div class="content container-fluid" style="display: block" id="form-sign">
+        <form class="container-fluid" action="" id="reset_pass" method="post" autocomplete="off">
+            <h1 class="h-content text-sgl-success2">Set New Password</h1>
+            <div class="col-md-12">
+                <hr>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-5 col-11">
+                    <div class="text-md mt-2"><label for="">Password</label></div>
+                    <input type="password" name="new_password" id="new_password" minlength="8" maxlength="20"
+                        class="form-control rounded-0"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$|^(?=.*[A-Z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[#@]).{8,20}$"
+                        required>
+                    <span toggle="#new_password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+                    <div id="new_passwordCheck" style="font-size: 16px;padding: 0px;"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Use 8 or more characters with a mix of letters, numbers & symbols ( @, # )</div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mx-auto col-md-5 col-11">
+                    <div class="text-md mt-2"><label for="">Confirm Password</label></div>
+                    <input type="password" name="confirm_password" id="confirm_password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$|^(?=.*[A-Z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[#@]).{8,20}$"
+                        class="form-control rounded-0" minlength="8" maxlength="20" required>
+                    <span toggle="#confirm_password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+                    <div id="confirm_passwordCheck" style="font-size: 16px;padding: 0px;"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Those passwords not match. Try again.</div>
+
+                </div>
+            </div>
+            <div class="row justify-content-md-center mt-4">
+                <div class="col-5 mx-auto">
+                    <input type="password" name="code" id="code" class="form-control rounded-0" style="display: none;">
+                    <button onclick="confirmPassword('<%= policy %>', '<%= handle_rdr %>')" type="button"
+                        class="btn btn-block btn-sgl-success rounded-0 text-lg" id="btnSummit" disabled>
+                        Submit
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="box-blue"></div>
+    <div class="box-yellow"></div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/auth/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
+
+    <!-- <script src="../script/js/jquery-3.3.1.min.js"></script>
+    <script src="../script/js/popper.min.js"></script>
+    <script src="../script/js/bootstrap.min.js"></script>
+    <script src="../script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"></script>
+    <script src="../script/js/goToHome.js"></script> -->
+
+    <script>
+        $(document).ready(function () {
+            var new_password = document.getElementById("new_password")
+            var confirm_password = document.getElementById("confirm_password")
+            var btnSummit = document.getElementById("btnSummit")
+
+            new_password.addEventListener("keyup", function (event) {
+                if (!new_password.validity.valid || !pwdRule(new_password.value)) {
+                    $('#new_passwordCheck').removeClass('d-none')
+                    new_password.classList.add("is-invalid")
+                    $('#new_passwordCheck').addClass('text-danger')
+                } else {
+                    $('#new_passwordCheck').addClass('d-none')
+                    new_password.classList.remove('is-invalid')
+                }
+                if (new_password.value === confirm_password.value && pwdRule(new_password.value)) {
+                    btnSummit.removeAttribute("disabled")
+                } else {
+                    btnSummit.setAttribute("disabled", "")
+                }
+                checkPasswordMatch()
+            })
+
+            confirm_password.addEventListener("keyup", function (event) {
+                if (new_password.value === confirm_password.value && pwdRule(new_password.value)) {
+                    btnSummit.removeAttribute("disabled")
+                } else {
+                    btnSummit.setAttribute("disabled", "")
+                }
+                checkPasswordMatch()
+            })
+        })
+
+        function confirmPassword(policy, isRedirect) {
+            // new Promise(function (resolve, reject) {
+            var btnSummit = document.getElementById("btnSummit")
+            btnSummit.setAttribute("disabled", "")
+            const subSession = policy.split('_')
+            const url = window.location.origin + `/auth/v3.1/forgot?type=email_password&action=confirm_reset&policy=${subSession[0]}&sid=${subSession[1]}&rtid=${subSession[2]}&tid=${subSession[3]}`
+            if (isRedirect === 'false') {
+                document.getElementById('code').value = subSession[4]
+                document.getElementById('reset_pass').action = url
+                document.forms['reset_pass'].submit()
+            }
+            else {
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        new_password: document.getElementById('new_password').value,
+                        code: subSession[4]
+                    },
+                    success: function (result) {
+                        console.log('result: ', result)
+                        if (result instanceof Object) {
+                            if (result.redirect_uri) {
+                                window.location = result.redirect_uri + '?code=' + result.code + (result.state ? '&state=' + result.state : '')
+                            }
+                        } else {
+                            document.body.innerHTML = result
+                        }
+                    },
+                    error: function (error) {
+                        //alert('Error: ' + error.responseJSON.error)
+                        alert('link นี้ได้ถูกใช้งานไปแล้ว กรุณาทำรายการใหม่อีกครั้ง')
+                    }
+                });
+            }
+        }
+
+        //         else {
+        //             resolve(url, subSession)
+        //         }
+        //     }).then(function (url, subSession) {
+        //         $.ajax({
+        //             url: url,
+        //             type: 'POST',
+        //             data: {
+        //                 new_password: document.getElementById('new_password').value,
+        //                 code: subSession[4]
+        //             },
+        //             success: function (result) {
+        //                 // console.log('result: ', result)
+        //                 if (result instanceof Object) {
+        //                     // const res = JSON.parse(result)
+        //                     // console.log('res: ', res)
+        //                     if (result.redirect_uri) {
+        //                         window.location = result.redirect_uri + '?code=' + result.code + (result.state ? '&state=' + result.state : '')
+        //                     }
+        //                 } else {
+        //                     document.body.innerHTML = result
+        //                 }
+        //             },
+        //             error: function (error) {
+        //                 Swal.fire({
+        //                     title: 'Something Wrong',
+        //                     text: "Please try again.",
+        //                     type: 'error',
+        //                     confirmButtonColor: '#0e7678',
+        //                     confirmButtonText: 'Close',
+        //                     allowOutsideClick: false
+        //                 }).then((result) => {
+        //                     if (result.value) {
+        //                         btnSummit.removeAttribute("disabled", "")
+        //                     }
+        //                 })
+        //             }
+        //         });
+        //     });
+        // }
+
+        function pwdRule(pwd) {
+            var pwdRule = 0;
+            var isPassword = /^[\da-zA-Z@#]+$/.test(pwd)
+            var isDecimal = /(?=.*[\d])/.test(pwd)
+            var isLowercase = /(?=.*[a-z])/.test(pwd)
+            var isUppercase = /(?=.*[A-Z])/.test(pwd)
+            var isSymbols = /(?=.*[@#])/.test(pwd)
+            if (isPassword && pwd.length >= 8) {
+                if (isDecimal) {
+                    pwdRule++
+                } if (isLowercase) {
+                    pwdRule++
+                } if (isUppercase) {
+                    pwdRule++
+                } if (isSymbols) {
+                    pwdRule++
+                }
+            }
+            return pwdRule >= 3 ? true : false;
+        }
+
+        function checkPasswordMatch() {
+            if (confirm_password.value == "" || confirm_password.value == null || new_password.value === confirm_password.value && pwdRule(new_password.value)) {
+                $('#confirm_passwordCheck').addClass('d-none')
+                // confirm_password.classList.add("is-valid")
+                confirm_password.classList.remove('is-invalid')
+            } else {
+                $('#confirm_passwordCheck').removeClass('d-none')
+                confirm_password.classList.remove('is-valid')
+                confirm_password.classList.add("is-invalid")
+            }
+        }
+
+        var mouseClick = false;
+
+        $(".toggle-password").on("mousedown touchstart", function () {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            console.log('>>>>', input.attr("type"))
+            input.attr("type", "text");
+            mouseClick = true;
+        });
+
+        $(".toggle-password").on("mouseleave", function () {
+            var input = $($(this).attr("toggle"));
+            if (mouseClick == true) {
+                $(this).toggleClass("fa-eye fa-eye-slash");
+                input.attr("type", "password");
+                mouseClick = false
+            }
+        });
+        $(".toggle-password").on("mouseup touchend", function () {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            // console.log('>>>>', input.attr("type"))
+            input.attr("type", "password");
+            mouseClick = false;
+        });
+
+
+    </script>
+</body>
+
+</html>

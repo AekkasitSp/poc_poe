@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/icon/favicon.ico">
+    <title>IDEM</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/auth/poe/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/poe/script/css/style-c.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/poe/script/font-awesome-4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+        crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="script/css/bootstrap.min.css">
+    <link rel="stylesheet" href="script/css/style-c.min.css">
+    <link rel="stylesheet" href="script/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"> -->
+</head>
+
+<body class="bg-color">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center" id="exampleModalLongTitle">เตรียมความพร้อมในการสมัครสมาชิก
+                        IDEM สำหรับลูกค้านิติบุคคล</h5>
+                </div>
+                <div class="modal-body mt-3" style="font-size: 17px;">
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">กรณีบริษัท
+                        ห้างหุ้นส่วนจำกัด หรือห้างหุ้นส่วนสามัญนิติบุคคล มีผู้มีอำนาจกระทำการแทน 1 ท่าน และมา
+                        ทำรายการด้วยตัวเอง</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">กรุณาเตรียมเอกสารดังนี้
+                    </p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">
+                        1.บัตรประจำตัวประชาชนผู้ทำรายการ</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">2.หนังสือรับรอง
+                        (อายุไม่เกิน 1 ปี) </p>
+                    <br>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">กรณีบริษัท
+                        ห้างหุ้นส่วนจำกัด หรือห้างหุ้นส่วนสามัญนิติบุคคล มีผู้มีอำนาจกระทำการแทนมากกว่า 1 ท่าน และ
+                        หนึ่งในผู้มีอำนาจมาทำรายการด้วยตัวเอง หรือมอบอำนาจให้ผู้อื่น มาทำรายการแทน</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">กรุณาเตรียมเอกสารดังนี้
+                    </p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">
+                        1.บัตรประจำตัวประชาชนผู้ทำรายการ</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">2.หนังสือรับรอง
+                        (อายุไม่เกิน 1 ปี)</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">
+                        3.สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจกระทำการแทนตามเงื่อนไขในหนังสือรับรอง
+                        พร้อมลงนามรับรองสำเนาถูกต้อง</p>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">4.หนังสือมอบอำนาจ</p>
+                    <br>
+                    <p class="mb-0" style="font-weight: bold;font-size: 24px;line-height: 24px;">หมายเหตุ
+                        หากเป็นผู้ที่ไม่มีสัญชาติไทยให้ใช้หนังสือเดินทางแทนบัตรประจำตัวประชาชน
+                        เมื่อทำการสมัครเรียบร้อยแล้ว ทีมงานจะแจ้งผลการตรวจสอบเอกสารผ่านทาง Email ที่ท่านสมัครไว้ ภายใน 1
+                        วันทำการ</p>
+                </div>
+                <br>
+                <button style="color: white !important;" type="button"
+                    class="btn btn-block btn-sgl-success col-5 mx-auto btn-modal" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+    <div class="logo row d-none" id="top-register">
+        <button class="btn content-top-right-register text-btn-top" style="padding-top: 5px;" onclick="getForm('sign')">
+            <!-- <img class="mr-3"  src="/images/user-icon.png"> -->
+            <i class="fa fa-user mr-3 text-white" onclick="getForm('sign')" aria-hidden="true"></i>
+            LOGIN
+        </button>
+    </div>
+    <div class="logo row d-none" id="top-forgot">
+        <button class="btn content-top text-btn-top" style="padding-top: 5px;" onclick="getForm('sign')">
+            BACK
+        </button>
+    </div>
+
+    <!-- START Login from -->
+    <div class="content container-fluid" style="display: block" id="form-sign">
+        <form class="container-fluid" action="" id="login" method="post" autocomplete="off">
+            <input type="hidden" id="recode" name="recode">
+            <h1 class="h-content text-sgl-success2">Log In</h1>
+            <!-- <div class="row pr-5 pl-5 pb-3"> -->
+            <div class="col-md-12 mb-3">
+                <hr>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-5">
+                    <div class="text-md mt-2"><label for="">Email</label></div>
+                    <input type="email" name="username" id="susername" class="form-control"
+                        pattern="[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*" placeholder="Email" required
+                        autocomplete="username">
+                    <div id="susernameValid" style="font-size: 16px;padding: 0px;"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Please fill email. Example : example@example.com</div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-5">
+                    <div class="text-md mt-2"><label for="">Password</label></div>
+                    <input type="password" name="password" id="spassword" onkeypress="capLock(event)"
+                        class="form-control" placeholder="Password" minlength="1" maxlength="20" required
+                        autocomplete="password">
+                    <span toggle="#spassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+                    <div id="passValid" style="font-size: 16px;padding: 0px;"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Please fill password atleast 8 characters.</div>
+                    <div id="spasswordCapsLock"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Caps lock is ON.</div>
+                </div>
+            </div>
+            <!-- <div class="offset-md-6 col-md-6 text-lg text-right mt-4 mb-4" id='btn_forgot'><a href="#"
+                    onclick="getForm('forgot')" class="text-sgl-success text-decoration-none">Forgot your password ?</a>
+            </div> -->
+            <!-- </div> -->
+            <div class="mt-5 row justify-content-md-center">
+                <div class="col-5 mx-auto ">
+                    <button id="bsing_in" onclick="getLogin();" type="button" class="btn btn-block btn-sgl-success">Log
+                        In</button>
+                </div>
+            </div>
+            <div class="row mx-auto justify-content-md-end col-md-5 mt-3 pr-0">
+                <div class="text-left text-lg">
+
+                </div>
+                <div class="col-4 text-left text-lg pl-0"> <a href="#" onclick="getForm('register')"
+                        class="text-sgl-success text-decoration-none" id='btn_register'>Register</a>
+                </div>
+                <div class="col-8 text-lg text-right pr-0" id='btn_forgot'><a href="#" onclick="getForm('forgot')"
+                        class="text-sgl-success text-decoration-none">Forgot Password ?</a>
+                </div>
+            </div>
+            <!-- <div class="col-md-12 mb-3">
+                <hr class="mt-4">
+            </div>
+            <div class="row justify-content-md-center mt-1">
+                <div class="mx-auto text-lg">
+                    Are you AIS EMPLOYEE? <a href="#" onclick="openIndexLdap()" class="text-sgl-success text-decoration-none"
+                        id='btn_register'>LOGIN
+                        HERE.</a>
+                </div>
+            </div> -->
+            <!-- <div class="box-blue"></div>
+            <div class="box-yellow"></div> -->
+            <!-- <div class="box-gray"></div>
+            <div class="box-black"></div> -->
+        </form>
+
+    </div>
+    <!-- END Login from -->
+
+    <!-- START Forgot from -->
+    <div class="content container-fluid" id="form-forgot" style="display: none;">
+        <form class="container-fluid" action="" id="fromforgot" method="post" autocomplete="off">
+            <br>
+
+            <h1 class="h-content text-sgl-success2">Forgot Password</h1>
+
+            <div class="col-md-12 mb-3">
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="mx-auto col-md-5">
+                    <div class="text-md mt-2"><label for="">Email</label></div>
+                    <input type="email" name="username" id="fusername" class="form-control"
+                        pattern="[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*" placeholder="Email" required
+                        autocomplete="off">
+                    <div id="fusernameCheck" style="font-size: 16px;padding: 0px;"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
+                        Please fill email. Example : example@example.com</div>
+
+                </div>
+            </div>
+
+            <!-- <div class="col-md-12 col-sm-12 mx-auto mt-3 form-inline">
+                   
+                    <label class="col-md-2 col-sm-2 text-left" for="">Email :</label>
+                    <input type="email" name="username" id="fusername" class="form-control col-md-5 col-sm-5 rounded-0"
+                        pattern="[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*" placeholder="Email" required >
+                     
+                    <div id="fusernameCheck" style="font-size: 16px; padding-right: 0px" class="col-md-11 text-right text-sgl-success-hint mb-2 d-none text-danger ">
+                        Please fill email. Example : example@example.com</div>
+                </div> -->
+
+
+            <div class="row justify-content-md-center mt-4">
+                <div class="col-7 col-md-5 mx-auto">
+                    <button id="btn-forgot" onclick="getResetPasswd();" type="button"
+                        class="btn btn-block btn-sgl-success rounded-0 text-lg" disabled>Get New Password</button>
+                </div>
+            </div>
+            <div class="row mx-auto justify-content-md-end col-md-5 mt-3 pr-0">
+                <div class="col-4"></div>
+                <div class="col-8 text-lg text-right " style="color: #ffffff;">
+                    New member ?<br><a href="#" onclick="getForm('register')"
+                        class="text-sgl-success text-decoration-none">REGISTER
+                        HERE</a>
+                </div>
+            </div>
+
+            <!-- <div class="box-blue"></div>
+            <div class="box-yellow"></div> -->
+            <!-- <div class="box-gray"></div>
+            <div class="box-black"></div> -->
+        </form>
+    </div>
+    <!-- END Forgot from -->
+
+    <!-- START Register from -->
+    <div class="content-register container-fluid" id="form-register" style="display: none;">
+        <form action="" class="container-fluid" id="register" method="post" autocomplete="off">
+            <br>
+            <h1 class="h-content text-sgl-success2">Create Your Account</h1>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <hr>
+                </div>
+                <!-- <div class="checkbox col-md-12">
+                    <label style="font-size: 28px;"><input id="checkcategory" type="checkbox" value="" onclick="checkBoxRegister()"> Register as a corporate customer </label>
+                    &nbsp;
+                    <a href="#" data-toggle="tooltip" data-placement="bottom"
+                    title="" data-html="true" data-original-title="<b>เตรียมความพร้อมในการสมัครสมาชิก AIS Playgroundสำหรับลูกค้านิติบุคคล</b><br>
+                    กรณีบริษัท ห้างหุ้นส่วนจำกัด หรือห้างหุ้นส่วนสามัญนิติบุคคล <b>มีผู้มีอำนาจกระทำการแทน 1 ท่าน</b> และมา<b>ทำรายการด้วยตัวเอง</b>
+                    <u>กรุณาเตรียมเอกสารดังนี้</u> <br>
+                    1.	บัตรประจำตัวประชาชนผู้ทำรายการ <br>
+                    <font color='red'>2.	 หนังสือรับรอง (อายุไม่เกิน 1 ปี) </font> <br>
+                    กรณีบริษัท ห้างหุ้นส่วนจำกัด หรือห้างหุ้นส่วนสามัญนิติบุคคล <b>มีผู้มีอำนาจกระทำการแทนมากกว่า 1 ท่าน</b> และ<b>หนึ่งในผู้มีอำนาจมาทำรายการด้วยตัวเอง หรือมอบอำนาจให้ผู้อื่น</b>มาทำรายการแทน
+                    <u>กรุณาเตรียมเอกสารดังนี้</u> <br>
+                    1.	บัตรประจำตัวประชาชนผู้ทำรายการ <br>
+                    <font color='red'>2.	หนังสือรับรอง (อายุไม่เกิน 1 ปี) </font> <br>
+                    3.	สำเนาบัตรประจำตัวประชาชนของผู้มีอำนาจ<b>กระทำการแทนตามเงื่อนไขในหนังสือรับรอง</b> พร้อมลงนามรับรองสำเนาถูกต้อง <br>
+                    4.	หนังสือมอบอำนาจ <br>
+                    หมายเหตุ หากเป็นผู้ที่ไม่มีสัญชาติไทยให้ใช้หนังสือเดินทางแทนบัตรประจำตัวประชาชน
+                    เมื่อทำการสมัครเรียบร้อยแล้ว ทีมงานจะแจ้งผลการตรวจสอบเอกสารผ่านทาง Email ที่ท่านสมัครไว้ ภายใน <font color='red'> 1 </font>วันทำการ"
+                    class="red-tooltip"><img src="images/ic-info.png" 
+                    width="24px" height="24px"></a>
+
+                  </div> -->
+
+                <div class="col-md-8 mx-auto text-lg mt-2"><label style="font-size: 28px;" for="">
+                        ข้อมูลผู้สมัคร</label></div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-8">
+                    <div class="text-md mt-3"><label for="">First Name</label></div>
+                    <input type="text" name="firstname" id="fname" class="form-control rounded-0" pattern="[A-Za-z]*"
+                        maxlength="50" autocomplete="off" required>
+                    <div id="fnameMsg" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">Please fill
+                        first name with English only.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-8">
+                    <div class="text-md mt-3"><label for="">Last Name</label></div>
+                    <input type="text" name="lastname" id="lname" class="form-control rounded-0" pattern="[A-Za-z]*"
+                        maxlength="50" autocomplete="off" required>
+                    <div id="lnameMsg" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">Please fill
+                        last name with English only.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-8">
+                    <div class="text-md mt-3"><label for="">Email</label></div>
+                    <input type="email" name="username" id="rusername" class="form-control rounded-0"
+                        pattern="[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*" autocomplete="off" required>
+                    <div id="rusernameValid" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">Please
+                        fill email. Example : example@example.com</div>
+                    <div id="rusernameCheck" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">This email is
+                        already registered.</div>
+                    <div id="rusernameCheckError" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">Something wrong!
+                        Please try again.</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-8">
+                    <div class="text-md mt-3"><label for="">Password</label></div>
+                    <input type="password" name="password" id="rpassword" minlength="8" maxlength="20"
+                        class="form-control rounded-0"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$|^(?=.*[A-Z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[#@]).{8,20}$"
+                        required>
+                    <span toggle="#rpassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+                    <div id="rpasswordCheck" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-sgl-success-hint mb--2 text-sgl-success-hint">*Use 8 or
+                        more characters with a mix of letters, numbers & symbols</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto col-md-8">
+                    <div class="text-md mt-3"><label for="">Confirm Password</label></div>
+                    <input type="password" name="confirm_password" id="rconfirm_password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$|^(?=.*[A-Z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*\d)(?=.*[#@]).{8,20}$|^(?=.*[a-z])(?=.*[A-Z])(?=.*[#@]).{8,20}$"
+                        class="form-control rounded-0" minlength="8" maxlength="20" autocomplete="off" required>
+                    <span toggle="#rconfirm_password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+                    <div id="rconfirm_passwordCheck" style="font-size: 16px; padding-right: 0px"
+                        class="col-md-12 text-left text-sgl-success-hint mb--2 text-danger d-none">
+                        Those passwords not match. Try again.</div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-8 mt-2 mx-auto">
+                    <!-- <input type="checkbox" id="checkTC" value="accept" name="tc"class="checkbox-round"/> -->
+                    <div class="round">
+                        <input type="checkbox" id="checkbox" value="accept" name="tc" />
+                        <label for="checkbox"></label>
+                        <span id="nonCorporate" style="font-weight: bold;color: #ffffff;font-size: 20px;" class="ml-3">I
+                            agree to the <a style="font-weight: normal;color: #f14168;cursor: pointer;"
+                                href="https://iot-apiv3.ais.co.th/term/residential" target="_blank">Terms of Use&Privacy
+                                Policy.</a></span>
+
+                        <span id="ifCorporate" style="font-weight: bold;color: #ffffff;font-size: 20px;"
+                            class="ml-3 d-none">I agree to the <a
+                                style="font-weight: normal;color: #f14168;cursor: pointer;"
+                                href="https://iot-apiv3.ais.co.th/term/business" target="_blank">Terms of Use&Privacy
+                                Policy.</a></span>
+                    </div>
+                </div>
+            </div>
+            <div id="ifCorporateTrue" class="mt-3 mx-auto col-12 col-md-8 text-md d-none">
+                <label>เตรียมความพร้อมในการสมัครสมาชิก IDEM สำหรับลูกค้านิติบุคคล</label>&nbsp;<label
+                    data-toggle="modal" data-target="#exampleModalCenter"
+                    style="font-weight: normal;color: #b2d234;cursor: pointer;">อ่านต่อ</label>
+            </div>
+
+            <div class=" row justify-content-md-center">
+                <div class="mt-5 col-8 col-md-5 mx-auto mb-5">
+                    <button id="btn-done" onclick="getRegisteration();" type="button"
+                        class="btn btn-block btn-sgl-success" disabled>Done</button>
+                </div>
+            </div>
+
+            <!-- <div class="box-blue"></div>
+            <div class="box-yellow"></div> -->
+            <!-- <div class="box-gray"></div>
+            <div class="box-black"></div> -->
+        </form>
+        <input type="email" name="username" id="remail" style="display: none" required>
+    </div>
+
+    <div class="box-blue"></div>
+    <div class="box-yellow"></div>
+    <!-- END Register from -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/auth/poe/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/poe/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/poe/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/poe/script/js/emailpassword.js" crossorigin="anonymous"></script>
+    <script src="/auth/poe/script/js/goToHome.js" crossorigin="anonymous"></script>
+    <script src="/auth/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=<%= site_key %>"></script>
+
+
+    <!-- <script src="script/js/jquery-3.3.1.min.js"></script>
+    <script src="script/js/popper.min.js"></script>
+    <script src="script/js/bootstrap.min.js"></script>
+    <script src="script/js/emailpassword.js"></script>
+    <script src="script/js/goToHome.js"></script>
+    <script src="script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"></script> -->
+
+    <!-- login js -->
+    <!-- <% if (appChannels) { %>
+    <% Object.keys(appChannels).forEach(function eachKey(key){ %>
+    <% if(appChannels[key]['social_fb']) { %>
+    <script type="text/javascript" src="/auth/poe/script/js/facebookLogin.js"></script>
+    <% } else if (appChannels[key]['social_line']) { %>
+    <script type="text/javascript" src="/auth/poe/script/js/lineLogin.js"></script>
+    <% } else if (appChannels[key]['social_wechat']) { %>
+    <script type="text/javascript" src="/auth/poe/script/js/wechatLogin.js"></script>
+    <% }
+        })
+    } %> -->
+
+    <script>
+        $(document).ready(function () {
+            $("a").tooltip();
+            $('#rusername').keyup(function () {
+                checkPublicID('<%= policy %>', '<%= clientId %>')
+            })
+        })
+
+        $('#fromforgot').keydown(function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            }
+        })
+
+        getRegisteration = function () {
+            if ('<%= site_key %>' !== '') {
+                grecaptcha.execute('<%= site_key %>', { action: 'email_password_register' }).then(function (token) {
+                    document.getElementById('recode').value = token;
+                    sign_up('<%= policy %>', '<%= hasRedirectByTemplate %>')
+                });
+            } else {
+                sign_up('<%= policy %>', '<%= hasRedirectByTemplate %>')
+            }
+        }
+
+        getLogin = function () {
+            if ('<%= site_key %>' !== '') {
+                grecaptcha.execute('<%= site_key %>', { action: 'email_password_login' }).then(function (token) {
+                    document.getElementById('recode').value = token;
+                    sign_in('<%= policy %>', '<%= hasRedirectByTemplate %>')
+                });
+            } else {
+                sign_in('<%= policy %>', '<%= hasRedirectByTemplate %>')
+            }
+        }
+
+        getResetPasswd = function () {
+            if ('<%= site_key %>' !== '') {
+                grecaptcha.execute('<%= site_key %>', { action: 'email_password_forgot' }).then(function (token) {
+                    document.getElementById('recode').value = token;
+                    forgot('<%= policy %>', '<%= hasRedirectByTemplate %>')
+                });
+            } else {
+                forgot('<%= policy %>', '<%= hasRedirectByTemplate %>')
+            }
+        }
+
+    </script>
+</body>
+
+</html>

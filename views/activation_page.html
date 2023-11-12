@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/auth/singularity/images/icon/favicon.ico">
+    <title>Activate your account</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/auth/singularity/script/css/style-c.min.css" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="../script/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../script/css/style-c.min.css"> -->
+</head>
+
+<body class="bg-color">
+    <div class="content-activation-success" id="form-sign">
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <h2 class="mb-0 h-content text-sgl-success2">Successfully Register</h2>
+            </div>
+        </div>
+        <div class="col-md-12 mb-1">
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-2">
+                <img id="img-success" src="/auth/singularity/images/correct.png">
+                <!-- <img id="img-success" src="../images/correct.png"> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 mx-auto text-center mt-4">
+                <h5 id="txt-s2" style="font-weight: bold;">We now need to verify email address. We’ve sent an email to
+                    <%= email %> to verify you address. Please click the link in that email to coutinue.
+                </h5>
+            </div>
+        </div>
+        <h3 id="txt-success" class="h-content text-sgl-success-hint pt-1 d-none">Already send</h3>
+        <h5 id="countTex" class="h-content text-sgl-success-hint pt-1 d-none">System temporary unavailable. Please try
+            again laer in <span id="countTem">10</span></h5>
+        <!-- <h5 id="txt-s2" class="text-center mt-3">Please confirm your registration in the email you provided.</h5> -->
+        <h5 id="txt-s3" class="text-right mt-4 pr-5">Don’ receive email?</h5>
+        <div class="d-flex justify-content-center">
+            <div id="loader" class="loader d-none mt-5"></div>
+            <!-- <a id="btnSend" class="text-center mt-1 btn btn-link" onclick="reSend('<%= session %>', '<%= code %>')" role="button">
+                <h5>click <i style="color: #b2d234;">here</i> to resend the email </h5>
+            </a> -->
+        </div>
+        <div id="btnSend" class="row">
+            <div class="col-6 col-md-6 pl-5">
+                <button id="btn-done" onclick="goToHome();" type="button"
+                    class="btn btn-block btn-sgl-back">Back</button>
+            </div>
+            <div class="col-6 col-md-6 pr-5">
+                <button id="btn-done" onclick="reSend('<%= session %>', '<%= code %>')" type="button"
+                    class="btn btn-block btn-sgl-success">Resend</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="box-blue"></div>
+    <div class="box-yellow"></div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/auth/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/resend.js" crossorigin="anonymous"></script>
+    <script src="/auth/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
+
+    <!-- <script src="../script/js/jquery-3.3.1.min.js"></script>
+    <script src="../script/js/popper.min.js"></script>
+    <script src="../script/js/bootstrap.min.js"></script>
+    <script src="../script/js/resend.js"></script>
+    <script src="../script/js/goToHome.js"></script> -->
+
+
+</body>
+
+</html>

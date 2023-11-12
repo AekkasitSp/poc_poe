@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'DB Heavent Condense';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/default/fonts/db_heavent_thin_cond_v3.2.woff2');
+}
+@font-face {
+  font-family: 'DB Heavent Condense';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/default/fonts/db_heavent_cond_v3.2.woff2');
+}
+@font-face {
+  font-family: 'DB Heavent Condense';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/default/fonts/db_heavent_med_cond_v3.2.woff2');
+}
+@font-face {
+  font-family: 'DB Heavent Condense';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/default/fonts/db_heavent_bd_cond_v3.2.woff2');
+}
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+html, body {
+  min-height: 100%;
+  font-family: DB Heavent Condense;  
+}
+body{
+  margin: 0;
+}
+.content{
+  text-align: center;
+  width: 600px;
+  min-height: 450px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 300px;
+}
