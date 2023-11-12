@@ -396,7 +396,7 @@ function accept_TC(policy, type) {
             error: "server_error",
           };
         }
-        $.getJSON("/admd/script/js/error.const.json", function (data) {
+        $.getJSON("/poc_poe/script/js/error.const.json", function (data) {
           console.log("responseJSON: ", error);
           let _err_desc = data.social_term_and_cond[lang ? lang : "eng"].find(
             (obj) => {
