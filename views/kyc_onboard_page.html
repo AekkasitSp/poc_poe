@@ -10,10 +10,10 @@
 
     <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/auth/singularity/script/css/style-c-kyc.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/auth/singularity/script/css/bootstrap-datepicker.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+    <link rel="stylesheet" href="/singularity/script/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/singularity/script/css/style-c-kyc.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/singularity/script/css/bootstrap-datepicker.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
         crossorigin="anonymous">
 
     <!-- <link rel="stylesheet" href="../script/css/bootstrap.min.css" crossorigin="anonymous">
@@ -23,9 +23,9 @@
 </head>
 
 <body>
-    <img src="/auth/singularity/images/bg-login-desktop.png" alt="" class="bg">
+    <img src="/singularity/images/bg-login-desktop.png" alt="" class="bg">
     <div class="logo">
-        <img style="cursor: pointer;" onclick="goToHome()" src="/auth/singularity/images/main_logo.png" alt="">
+        <img style="cursor: pointer;" onclick="goToHome()" src="/singularity/images/main_logo.png" alt="">
     </div>
     <div class="content container-fluid align-center row justify-content-center" id="form-sign">
 
@@ -99,13 +99,13 @@
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="/auth/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/singularity/script/js/bs-datepicker.js" crossorigin="anonymous"></script>
-    <script src="/auth/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
+    <script src="/singularity/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/singularity/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/singularity/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="/singularity/script/js/bs-datepicker.js" crossorigin="anonymous"></script>
+    <script src="/singularity/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
         crossorigin="anonymous"></script>
-    <script src="/auth/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
+    <script src="/singularity/script/js/goToHome.js" crossorigin="anonymous"></script>
 
     <!-- <script src="moment.js"></script>
 <script src="../script/js/jquery-3.3.1.min.js"></script>
@@ -161,7 +161,7 @@
         function kycCheck(session, publicId, redirectURI, state, kycId) {
             const [xSession, xRtid, tid] = session.split('_')
             // const dPublicId = atob(publicId)
-            let URL = window.location.origin + `/auth/v3.1/kyc/check?sid=${xSession}&rtid=${xRtid}&tid=${tid}${state ? '&state=' + state : ''}`
+            let URL = window.location.origin + `/v3.1/kyc/check?sid=${xSession}&rtid=${xRtid}&tid=${tid}${state ? '&state=' + state : ''}`
             if (kycId) {
                 URL += `&kyc_id=${kycId}`
             }

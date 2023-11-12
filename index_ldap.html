@@ -1,118 +1,210 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/x-icon" href="/auth/poe/images/icon/favicon.ico">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/poe/images/icon/favicon.ico"
+    />
     <title>IDEM</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/auth/poe/script/css/bootstrap_ldap.min.css" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="/poe/script/css/bootstrap_ldap.min.css"
+      crossorigin="anonymous"
+    />
     <!-- css -->
-    <link rel="stylesheet" href="/auth/poe/script/css/style-c_ldap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/auth/poe/script/font-awesome-4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/auth/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
-        crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="/poe/script/css/style-c_ldap.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/poe/script/font-awesome-4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css"
+      crossorigin="anonymous"
+    />
 
     <!-- <link rel="stylesheet" href="script/css/bootstrap_ldap.min.css"> 
     <link rel="stylesheet" href="script/css/style-c_ldap.min.css">
     <link rel="stylesheet" href="script/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="script/sweetalert2-8.17.4/package/dist/sweetalert2.min.css">  -->
-</head>
+  </head>
 
-<body class="bg-color disable-dbl-tap-zoom">
+  <body class="bg-color disable-dbl-tap-zoom">
     <div class="logo row">
-        <div class="">
-            <button class="btn content-top text-btn-top" style="padding-top: 5px;" onclick="openIndex()"><img
-                    class="mr-3" src="/auth/poe/images/pg-back.png">BACK</button>
-        </div>
+      <div class="">
+        <button
+          class="btn content-top text-btn-top"
+          style="padding-top: 5px"
+          onclick="openIndex()"
+        >
+          <img class="mr-3" src="/poe/images/pg-back.png" />BACK
+        </button>
+      </div>
     </div>
     <!-- START Login from -->
     <div class="content container-fluid" style="display: block" id="form-sign">
-        <form class="container-fluid" action="" id="login" method="post" autocomplete="off">
-            <input type="hidden" id="recode" name="recode">
-            <h2 class="h-content text-sgl-success2">Employee Log in</h2>
-            <!-- <div class="row pr-5 pl-5 pb-3"> -->
-            <div class="col-md-12 mb-3">
-                <hr>
+      <form
+        class="container-fluid"
+        action=""
+        id="login"
+        method="post"
+        autocomplete="off"
+      >
+        <input type="hidden" id="recode" name="recode" />
+        <h2 class="h-content text-sgl-success2">Employee Log in</h2>
+        <!-- <div class="row pr-5 pl-5 pb-3"> -->
+        <div class="col-md-12 mb-3">
+          <hr />
+        </div>
+        <div class="row">
+          <div class="mx-auto col-md-5">
+            <div class="text-md mt-2"><label for="">Email</label></div>
+            <input
+              type="text"
+              name="username"
+              id="susername"
+              class="form-control"
+              pattern="[A-Za-z0-9]{5,15}|[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*"
+              placeholder="Email"
+              required
+              autocomplete="username"
+            />
+            <div
+              id="susernameValid"
+              style="font-size: 16px; padding: 0px"
+              class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none"
+            >
+              Please fill email. Example : example@example.com
             </div>
-            <div class="row">
-                <div class="mx-auto col-md-5">
-                    <div class="text-md mt-2"><label for="">Email</label></div>
-                    <input type="text" name="username" id="susername" class="form-control"
-                        pattern="[A-Za-z0-9]{5,15}|[A-Za-z0-9._-]*@[A-Za-z0-9._-]*\.[A-Za-z0-9.]*" placeholder="Email"
-                        required autocomplete="username">
-                    <div id="susernameValid" style="font-size: 16px;padding: 0px;"
-                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
-                        Please fill email. Example : example@example.com</div>
-
-                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mx-auto col-md-5">
+            <div class="text-md mt-2"><label for="">Password</label></div>
+            <input
+              type="password"
+              name="password"
+              id="spassword"
+              onkeypress="capLock(event)"
+              class="form-control"
+              placeholder="Password"
+              minlength="1"
+              maxlength="20"
+              required
+              autocomplete="password"
+            />
+            <span
+              toggle="#spassword"
+              class="fa fa-fw fa-eye-slash field-icon toggle-password"
+            ></span>
+            <div
+              id="passValid"
+              style="font-size: 16px; padding: 0px"
+              class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none"
+            >
+              Please fill password atleast 8 characters.
             </div>
-            <div class="row">
-                <div class="mx-auto col-md-5">
-                    <div class="text-md mt-2"><label for="">Password</label></div>
-                    <input type="password" name="password" id="spassword" onkeypress="capLock(event)"
-                        class="form-control" placeholder="Password" minlength="1" maxlength="20" required
-                        autocomplete="password">
-                    <span toggle="#spassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
-                    <div id="passValid" style="font-size: 16px;padding: 0px;"
-                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
-                        Please fill password atleast 8 characters.</div>
-                    <div id="spasswordCapsLock"
-                        class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none">
-                        Caps lock is ON.</div>
-                </div>
+            <div
+              id="spasswordCapsLock"
+              class="col-md-12 text-right text-sgl-success-hint mb--2 text-danger d-none"
+            >
+              Caps lock is ON.
             </div>
-            <!-- </div> -->
-            <div class="mt-5 row justify-content-md-center">
-                <div class="col-5 mx-auto ">
-                    <button id="bsing_in" onclick="getLogin();" type="button" class="btn btn-block btn-sgl-success">Log
-                        In</button>
-                </div>
-            </div>
-            <div class="row mx-auto justify-content-md-end col-md-5 mt-3">
-                <!-- <div class="text-left text-lg">
+          </div>
+        </div>
+        <!-- </div> -->
+        <div class="mt-5 row justify-content-md-center">
+          <div class="col-5 mx-auto">
+            <button
+              id="bsing_in"
+              onclick="getLogin();"
+              type="button"
+              class="btn btn-block btn-sgl-success"
+            >
+              Log In
+            </button>
+          </div>
+        </div>
+        <div class="row mx-auto justify-content-md-end col-md-5 mt-3">
+          <!-- <div class="text-left text-lg">
                     New member? <a href="#" onclick="getForm('register')" class="text-sgl-success text-decoration-none"
                         id='btn_register'>Register
                         here.</a>
                 </div> -->
-                <!-- <div class="text-lg" id='btn_forgot'><a href="#"
+          <!-- <div class="text-lg" id='btn_forgot'><a href="#"
                     onclick="getForm('forgot')" class="text-sgl-success text-decoration-none">Forgot Password ?</a>
                 </div> -->
-            </div>
-        </form>
+        </div>
+      </form>
     </div>
     <div class="footer-inmobile content-footer row logo-forgot-new pt-5">
-        <div class="row mx-auto col-md-10">
-            <div class="col-1 mr-5 mb-5">
-                <img id="aiaplogo" src="/auth/poe/images/aisplayground.png" width="45px" height="59.27px">
-            </div>
-            <!-- <div class="col-1"> -->
-            <div class="Line-12"></div>
-            <!-- </div> -->
-            <div class="col-3 mx-auto center">
-                <img id="magellanlogo" src="/auth/poe/images/aispartnermgmt.png" width="151px" height="53.74px">
-            </div>
-            <!-- <div class="col-1"> -->
-            <div class="Line-12"></div>
-            <!-- </div> -->
-            <div class="col-3 mx-auto center">
-                <img id="milkywaylogo" src="/auth/poe/images/AIAP_Logo.png" width="143.29px" height="62.74px">
-            </div>
-            <!-- <div class="col-1"> -->
-            <div class="Line-12"></div>
-            <!-- </div> -->
-            <div class="col-2 mx-auto center">
-                <img id="magellanlogo" src="/auth/poe/images/MAGELLAN_5x5cm.png" width="72px" height="72px">
-            </div>
-            <!-- <div class="col-1"> -->
-            <div class="Line-12"></div>
-            <!-- </div> -->
-            <div class="col-2 mx-auto center">
-                <img id="milkywaylogo" src="/auth/poe/images/MILKYWAY_5x5cm.png" width="72px" height="72px">
-            </div>
+      <div class="row mx-auto col-md-10">
+        <div class="col-1 mr-5 mb-5">
+          <img
+            id="aiaplogo"
+            src="/poe/images/aisplayground.png"
+            width="45px"
+            height="59.27px"
+          />
         </div>
+        <!-- <div class="col-1"> -->
+        <div class="Line-12"></div>
+        <!-- </div> -->
+        <div class="col-3 mx-auto center">
+          <img
+            id="magellanlogo"
+            src="/poe/images/aispartnermgmt.png"
+            width="151px"
+            height="53.74px"
+          />
+        </div>
+        <!-- <div class="col-1"> -->
+        <div class="Line-12"></div>
+        <!-- </div> -->
+        <div class="col-3 mx-auto center">
+          <img
+            id="milkywaylogo"
+            src="/poe/images/AIAP_Logo.png"
+            width="143.29px"
+            height="62.74px"
+          />
+        </div>
+        <!-- <div class="col-1"> -->
+        <div class="Line-12"></div>
+        <!-- </div> -->
+        <div class="col-2 mx-auto center">
+          <img
+            id="magellanlogo"
+            src="/poe/images/MAGELLAN_5x5cm.png"
+            width="72px"
+            height="72px"
+          />
+        </div>
+        <!-- <div class="col-1"> -->
+        <div class="Line-12"></div>
+        <!-- </div> -->
+        <div class="col-2 mx-auto center">
+          <img
+            id="milkywaylogo"
+            src="/poe/images/MILKYWAY_5x5cm.png"
+            width="72px"
+            height="72px"
+          />
+        </div>
+      </div>
     </div>
     <div class="box-blue"></div>
     <div class="box-yellow"></div>
@@ -121,12 +213,21 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="/auth/poe/script/js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/poe/script/js/popper.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/poe/script/js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="/auth/poe/script/js/goToHome.js" crossorigin="anonymous"></script>
-    <script src="/auth/poe/script/js/ldap.js" crossorigin="anonymous"></script>
-    <script src="/auth/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js" crossorigin="anonymous"></script>
+    <script
+      src="/poe/script/js/jquery-3.3.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/poe/script/js/popper.min.js" crossorigin="anonymous"></script>
+    <script
+      src="/poe/script/js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/poe/script/js/goToHome.js" crossorigin="anonymous"></script>
+    <script src="/poe/script/js/ldap.js" crossorigin="anonymous"></script>
+    <script
+      src="/poe/script/sweetalert2-8.17.4/package/dist/sweetalert2.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://www.google.com/recaptcha/api.js?render=<%= site_key %>"></script>
 
     <!-- <script src="script/js/jquery-3.3.1.min.js"></script>
@@ -138,30 +239,29 @@
     <script src="https://www.google.com/recaptcha/api.js?render=<%= site_key %>"></script>        -->
 
     <script>
+      $(document).ready(function () {
+        $("a").tooltip();
+        $("#rusername").keyup(function () {
+          checkPublicID("<%= policy %>", "<%= clientId %>");
+        });
+      });
 
-        $(document).ready(function () {
-            $("a").tooltip();
-            $('#rusername').keyup(function () {
-                checkPublicID('<%= policy %>', '<%= clientId %>')
-            })
-        })
-
-        getLogin = function () {
-            if ('<%= site_key %>' !== '') {
-                grecaptcha.execute('<%= site_key %>', { action: 'ldap_employee_login' }).then(function (token) {
-                    document.getElementById('recode').value = token;
-                    sign_in('<%= policy %>', '<%= hasRedirectByTemplate %>')
-                });
-            } else {
-                sign_in('<%= policy %>', '<%= hasRedirectByTemplate %>')
-            }
+      getLogin = function () {
+        if ("<%= site_key %>" !== "") {
+          grecaptcha
+            .execute("<%= site_key %>", { action: "ldap_employee_login" })
+            .then(function (token) {
+              document.getElementById("recode").value = token;
+              sign_in("<%= policy %>", "<%= hasRedirectByTemplate %>");
+            });
+        } else {
+          sign_in("<%= policy %>", "<%= hasRedirectByTemplate %>");
         }
-        function openIndex() {
-            let url = window.location.href
-            window.location.href = url.replace("&template_name=index_ldap", "");
-        }
-
+      };
+      function openIndex() {
+        let url = window.location.href;
+        window.location.href = url.replace("&template_name=index_ldap", "");
+      }
     </script>
-</body>
-
+  </body>
 </html>

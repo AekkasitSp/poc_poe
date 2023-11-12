@@ -1,35 +1,35 @@
 @font-face {
-  font-family: 'DB Heavent Condense';
+  font-family: "DB Heavent Condense";
   font-style: normal;
   font-weight: 300;
-  src: url('/auth/singularity/fonts/db_heavent_thin_cond_v3.2.woff2');
+  src: url("/singularity/fonts/db_heavent_thin_cond_v3.2.woff2");
 }
 
 @font-face {
-  font-family: 'DB Heavent Condense';
+  font-family: "DB Heavent Condense";
   font-style: normal;
   font-weight: 400;
-  src: url('/auth/singularity/fonts/db_heavent_cond_v3.2.woff2');
+  src: url("/singularity/fonts/db_heavent_cond_v3.2.woff2");
 }
 
 @font-face {
-  font-family: 'DB Heavent Condense';
+  font-family: "DB Heavent Condense";
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/db_heavent_med_cond_v3.2.woff2');
+  src: url("../fonts/db_heavent_med_cond_v3.2.woff2");
 }
 
 @font-face {
-  font-family: 'DB Heavent Condense';
+  font-family: "DB Heavent Condense";
   font-style: normal;
   font-weight: 700;
-  src: url('/auth/singularity/fonts/db_heavent_bd_cond_v3.2.woff2');
+  src: url("/singularity/fonts/db_heavent_bd_cond_v3.2.woff2");
 }
 
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
 .card {
-  border: 1.5px solid rgba(0, 0, 0, .125) !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.125) !important;
 }
 
 .card1 {
@@ -130,12 +130,12 @@ input[type=radio] {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input~.checkmark {
+.container:hover input ~ .checkmark {
   background-color: #ffffff;
 }
 
 /* When the radio button is checked, add a blue background */
-.container input:checked~.checkmark {
+.container input:checked ~ .checkmark {
   background-color: #ffffff;
 }
 
@@ -147,7 +147,7 @@ input[type=radio] {
 }
 
 /* Show the indicator (dot/circle) when checked */
-.container input:checked~.checkmark:after {
+.container input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -231,7 +231,7 @@ body {
   right: 0;
 }
 
-.logo>img {
+.logo > img {
   margin-top: 30px;
   width: 90px;
   height: 90px;
@@ -342,7 +342,7 @@ label {
 }
 
 .mb--2 {
-  margin-bottom: -1.5rem !important
+  margin-bottom: -1.5rem !important;
 }
 
 .field-icon {
@@ -352,7 +352,7 @@ label {
   margin-top: -28px;
   position: relative;
   z-index: 2;
-  color: gray
+  color: gray;
 }
 
 .fa-back {
@@ -400,12 +400,12 @@ label {
   color: #000;
   text-align: left;
   background-color: #f6fae6;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   font-family: DB Heavent Condense;
   font-size: 24px;
 }
 
-.bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before,
 .bs-tooltip-bottom .arrow::before {
   border-bottom-color: #fff;
   /* Red */
@@ -559,14 +559,16 @@ label {
   padding-left: 35px;
 }
 
-@media screen and (max-width:1024px) {}
+@media screen and (max-width: 1024px) {
+}
 
-@media screen and (max-width:768px) {}
+@media screen and (max-width: 768px) {
+}
 
-@media screen and (max-width:500px) {}
+@media screen and (max-width: 500px) {
+}
 
-@media screen and (max-width:414px) {
-
+@media screen and (max-width: 414px) {
   .logo-register-other {
     position: absolute;
     width: 650px;
@@ -656,8 +658,7 @@ label {
   }
 }
 
-@media screen and (max-width:411px) {
-
+@media screen and (max-width: 411px) {
   .logo-register-other {
     position: absolute;
     width: 650px;
@@ -747,8 +748,7 @@ label {
   }
 }
 
-@media screen and (max-width:375px) {
-
+@media screen and (max-width: 375px) {
   .logo-register-other {
     position: absolute;
     width: 650px;
@@ -838,8 +838,7 @@ label {
   }
 }
 
-@media screen and (max-width:360px) {
-
+@media screen and (max-width: 360px) {
   .logo-register-other {
     position: absolute;
     width: 650px;
@@ -929,8 +928,7 @@ label {
   }
 }
 
-@media screen and (max-width:320px) {
-
+@media screen and (max-width: 320px) {
   .logo-register-other {
     position: absolute;
     width: 650px;
