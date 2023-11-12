@@ -2,28 +2,28 @@
   font-family: 'DB Heavent Condense';
   font-style: normal;
   font-weight: 300;
-  src: url('/fonts/db_heavent_thin_cond_v3.2.woff2');
+  src: url('/poc_poe/fonts/db_heavent_thin_cond_v3.2.woff2');
 }
 
 @font-face {
   font-family: 'DB Heavent Condense';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/db_heavent_cond_v3.2.woff2');
+  src: url('/poc_poe/fonts/db_heavent_cond_v3.2.woff2');
 }
 
 @font-face {
   font-family: 'DB Heavent Condense';
   font-style: normal;
   font-weight: 500;
-  src: url('/fonts/db_heavent_med_cond_v3.2.woff2');
+  src: url('/poc_poe/fonts/db_heavent_med_cond_v3.2.woff2');
 }
 
 @font-face {
   font-family: 'DB Heavent Condense';
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/db_heavent_bd_cond_v3.2.woff2');
+  src: url('/poc_poe/fonts/db_heavent_bd_cond_v3.2.woff2');
 }
 
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
